@@ -4,7 +4,8 @@ import './App.css';
 import Form from './components/Form';
 import Home from './pages/Home'
 import Admin from './pages/Admin/pageOne'
-
+import Admin2 from './pages/Admin/pageThree'
+import Admin1 from './pages/Admin/pageTwo'
 import {
   Routes,
   Route,
@@ -21,14 +22,15 @@ export default function App() {
       <Routes>
               <Route path="/" element={<Home />} />
               {/* common component */}
-              <Route path="/employee" element={<Admin />} />
-       
-              <Route path="/Admin" element={<Admin />} />
+        <Route path="/employee" element={<Admin />} />
+        {/* nested routes admin */}
+      { NestedAdmin()}
+              {/* <Route path="/Admin" element={<Admin />} /> */}
               {/* Talent component */}
-        <Route path="/talent" element={<Talent />}>
+        <Route path="/talent" element={<Form />}>
           <Route path="" element={<Private />} />
         </Route>
-        <Route
+        {/* <Route
           path="/private-nested"
           element={
             <PrivateRoute>
@@ -36,7 +38,7 @@ export default function App() {
             </PrivateRoute>
           }
         />
-        <Route path="/login" element={<Form />} />
+        <Route path="/login" element={<Form />} /> */}
       </Routes>
     </BrowserRouter>
   );
@@ -45,16 +47,30 @@ export default function App() {
 // const Home = () => <div>Home</div>;
 const Private = () => <div> < Admin/> </div>;
 // const Login = () => <div>lo gin</div>;
+const NestedAdmin =() =>
+{
+  
+  return (
 
-function Talent() {
-  const auth = useAuth();
-  return auth ? <Outlet /> : <Navigate to="/login" />;
+    <Route path="/Admin" element={<Outlet />}>
+           <Route index element={<Admin/>} />
+            <Route path="Admin1" element={<Admin1/>} />
+            <Route path="Admin2" element={<Admin2/>} />
+            <Route path=":id" element={<div> hello admin </div>} /> 
+
+    </Route>
+  )
 }
 
-function PrivateRoute({ children }) {
-  const auth = useAuth();
-  return auth ? children : <Navigate to="/login" />;
-}
+// function Talent() {
+//   const auth = useAuth();
+//   return auth ? <Outlet /> : <Navigate replace to="/login" />;
+// }
+
+// function PrivateRoute({ children }) {
+//   const auth = useAuth();
+//   return auth ? children : <Navigate to="/login" />;
+// }
 
 function useAuth() {
   return false;
@@ -65,11 +81,7 @@ function MyMenu() {
     <nav>
       <Link to="/">Home</Link>
       {" | "}
-      <Link to="/talent"> talent</Link>
-      {" | "}
-          <Link to="/employee">empolyee</Link>
-          {" | "}
-         <Link to="/Admin">Admin</Link>
+
 
     </nav>
   );

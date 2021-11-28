@@ -1,8 +1,8 @@
-const Admin = () => {
+const Admin2 = () => {
     return ( <div>
 
-        Admin page
+        page three
     </div>  );
 }
  
-export default Admin;
+export default Admin2;

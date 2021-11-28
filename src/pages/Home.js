@@ -3,10 +3,13 @@ const Home = () =>
 {
     return (
         <div>
-            {/* <nav>  <Link to="employee"> employee </Link>  
-              <Link to="employee">  </Link>  
-              <Link to ="employee"> Admin </Link>   
-              </nav> */}
+        <nav>
+         <Link to="/talent"> talent</Link>
+      {" | "}
+          <Link to="/employee">empolyee</Link>
+          {" | "}
+         <Link to="/Admin">Admin</Link>
+              </nav>
             Home 
         </div>
 

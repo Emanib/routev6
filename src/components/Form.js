@@ -1,7 +1,9 @@
-import {useState} from 'react'
+import { useState } from 'react';
+import {useNavigate} from 'react-router'
 const Form = () =>
 {
     const [userData, setUserData] = useState({ userName: "", role: " " });
+    const navigate = useNavigate()
     const handleChangeUser = (e) =>
     {
         e.preventDefault();
@@ -15,6 +17,19 @@ const Form = () =>
         })
 
     }
+
+    const handleSubmit = (e) =>
+    {
+        e.preventDefault();
+        
+        if (userData.role === "Talent")
+        {
+            navigate("/Talent")
+        }
+      
+       
+       
+    }
     return(
         <div>
             <form style = {{display:"flex",flexDirection:"column",alignItems:"center",gap:"5px"}}>
@@ -23,7 +38,8 @@ const Form = () =>
                  <label> Role </label>
                 <input type="text" name="role" onChange={handleChangeUser} />
                 {console.log(userData)}
-                <button> submit </button>
+                <button onClick={handleSubmit}> submit </button>
+                { userData.role==="employee" ||userData.role === "Admin" ? <div>not access</div> :<div>allow talent</div> }
 
             </form>
 
